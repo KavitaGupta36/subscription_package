@@ -1,0 +1,24 @@
+{
+    "name": "hestalabs/subscription",
+    "type": "library",
+    "authors": [
+        {
+            "name": "kavita",
+            "email": "kavita.gupta@hestabit.in"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "extra": {
+        "laravel": {
+            "providers": [
+                "hestalabs\\subscription\\SubscriptoinServiceProvider"
+            ]
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Hestalabs\\Subscription\\": "src/"
+        }
+    }
+}
