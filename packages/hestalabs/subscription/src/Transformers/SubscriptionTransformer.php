@@ -8,13 +8,23 @@ use Illuminate\Http\Request;
 trait SubscriptionTransformer 
 {
 	
+	/**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
 	public function __construct(SubscriptionPlan $subscription_plan)
 	{
 	    $this->subscription_plan = $subscription_plan;
 	}
-	/*
-	 *Save subscription update 
-	 */
+
+	/**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request  $id
+     * @return \Illuminate\Http\Response
+     */
 	public function updateRequest($request, $id)
 	{
 		try {

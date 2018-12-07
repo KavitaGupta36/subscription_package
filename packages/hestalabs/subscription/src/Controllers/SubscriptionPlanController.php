@@ -10,8 +10,13 @@ use Hestalabs\Subscription\Transformers\SubscriptionTransformer as subscription_
 
 class SubscriptionPlanController extends Controller
 {
+    
     use subscription_transformer;
-
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
     public function __construct(SubscriptionPlan $subscription_plan)
     {
         $this->subscription_plan = $subscription_plan;
@@ -161,14 +166,18 @@ class SubscriptionPlanController extends Controller
      */
     public function Search(Request $request)
     {
-        $search = $request->search;
-        if(!empty($search)){
-            $subscription=$this->subscription_plan->whereRaw("title like '%$search%'")->paginate(2);
-            return view('subscripton::subscription', compact('subscription'));
-            $subscription->appends(['search' => $search]);
-        }else{
-            Session::flash('flash_message', 'Search field will be not blank.');
-            return redirect('/subscription');
-        }  
+        try {
+            $search = $request->search;
+            if(!empty($search)){
+                $subscription=$this->subscription_plan->whereRaw("title like '%$search%'")->paginate(2);
+                return view('subscripton::subscription', compact('subscription'));
+                $subscription->appends(['search' => $search]);
+            }else{
+                Session::flash('flash_message', 'Search field will be not blank.');
+                return redirect('/subscription');
+            }  
+        } catch (Exception $e) {
+            dd($e);
+        }
     }
 }

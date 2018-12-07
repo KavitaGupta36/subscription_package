@@ -26,8 +26,4 @@ class SubscriptionPlan extends Model
      */
     protected $dates = ['deleted_at'];
 
-    public function UserSubscription()
-    {
-        return $this->belongsTo('App\UserSubscription');
-    }
 }

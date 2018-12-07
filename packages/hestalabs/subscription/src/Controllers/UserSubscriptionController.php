@@ -17,6 +17,12 @@ class UserSubscriptionController extends Controller
 {
     
     use user_subscription;
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
     public function __construct(User $user, SubscriptionPlan $subscription_plan, UserSubscription $user_subscription, UserSubscriptionLog $user_subscription_log)
     {
         $this->user = $user;
@@ -74,7 +80,7 @@ class UserSubscriptionController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\UserSubscription  $userSubscription
+     * @param \Illuminate\Http\Request $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -126,25 +132,6 @@ class UserSubscriptionController extends Controller
     }
 
     /**
-     * Validate field.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    /*public function validation($request)
-    {
-        try {
-            $this->validate($request, [
-                'user_id'          => 'required',
-                'subscription_id'  => 'required'
-            ]);
-            return;
-        } catch (Exception $e) {
-            dd($e);
-        }
-    }*/
-
-    /**
      * Search by User and Subscription  name.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -154,15 +141,19 @@ class UserSubscriptionController extends Controller
     {
         try {
             $search = $request->search;
-            $user_subscription = $this->user_subscription
-                                ->whereHas('user', function($query) use ($search){
-                                      $query->whereRaw("name like '%$search%'");
-                                  })->orWhereHas('subscription', function($query) use ($search){
-                                      $query->whereRaw("title like '%$search%'");
-                                  })->paginate(1);
+            if(!empty($search)){
+                $user_subscription = $this->user_subscription
+                                    ->whereHas('user', function($query) use ($search){
+                                          $query->whereRaw("name like '%$search%'");
+                                      })->orWhereHas('subscription', function($query) use ($search){
+                                          $query->whereRaw("title like '%$search%'");
+                                      })->paginate(1);
 
-            return view('subscripton::user_subscription', compact('user_subscription'));
-            $speakers->appends(['search' => $search]);
+                return view('subscripton::user_subscription', compact('user_subscription'));
+                $speakers->appends(['search' => $search]);
+            }else{
+                return redirect('/user_subscription');
+            }
         } catch (Exception $e) {
             dd($e);
         }

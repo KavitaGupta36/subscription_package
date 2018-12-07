@@ -10,7 +10,11 @@ use Illuminate\Http\Request;
 
 trait UserSubscriptionTransformer 
 {
-	
+	/**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
 	public function __construct(SubscriptionPlan $subscription_plan, UserSubscription $user_subscription)
 	{
 	    $this->subscription_plan = $subscription_plan;

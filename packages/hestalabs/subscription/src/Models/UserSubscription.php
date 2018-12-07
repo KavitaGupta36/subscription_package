@@ -28,11 +28,17 @@ class UserSubscription extends Model
      */
     protected $dates = ['deleted_at'];
 
+    /**
+     * Get the user associated with the subscription.
+     */
     public function user()
     {
         return $this->belongsTo('App\User', 'user_id', 'id');
     }
 
+    /**
+     * Get the user subscription associated with the user.
+     */
     public function subscription()
     {
         return $this->belongsTo('Hestalabs\Subscription\Models\SubscriptionPlan', 'subscription_id', 'id');

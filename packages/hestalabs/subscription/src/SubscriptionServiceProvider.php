@@ -15,17 +15,22 @@ class SubscriptionServiceProvider extends ServiceProvider
     {
         include __DIR__.'/routes.php';
 
+        $this->loadViewsFrom(__DIR__.'/Views', 'subscripton');
+        
         // Publish the config file
         $this->publishes([
-            __DIR__.'/config/subscription.php' => config_path('subscription.php'),
+            __DIR__.'/../config/subscription.php' => config_path('subscription.php'),
         ], 'config');
 
         // Publish the migrations
         $this->publishes([
-            __DIR__.'/database/migrations/' => database_path('/migrations')
+            __DIR__.'/../database/migrations/' => database_path('/migrations')
         ], 'migrations');
+        // Publish the view file 
+        $this->publishes([
+            __DIR__.'/Views/' => base_path('resources/views'),
+        ]);
         
-        $this->loadViewsFrom(__DIR__.'/Views', 'subscripton');
     }
 
     /**

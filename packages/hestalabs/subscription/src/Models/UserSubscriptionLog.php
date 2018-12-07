@@ -2,7 +2,6 @@
 
 namespace Hestalabs\Subscription\Models;;
 
-use User;
 use Illuminate\Database\Eloquent\Model;
 
 class UserSubscriptionLog extends Model
