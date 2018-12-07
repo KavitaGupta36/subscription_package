@@ -1,7 +1,7 @@
-@include('subscripton::layouts.header')
+@include('subscription::layouts.header')
 <div class="container-fluid">
   <div class="row content">
-	@include('subscripton::layouts.sidebar')
+	@include('subscription::layouts.sidebar')
     <div class="container">
 	    <div class="col-sm-9">
 	    	<h2>Edit Subscripton</h2>
@@ -11,7 +11,7 @@
 	    	<div class="col-sm-3">
 	    		<a href="{{ url('subscription') }}" class="btn btn-primary">List</a>
 	    	</div>
-	    	@include('subscripton::alert')
+	    	@include('subscription::layouts.alert')
 	    	<form action="{{ route('subscription.update', $details->id) }}" method="post" enctype="multipart/form-data" id="myForm" name="myForm">
 	    		{{csrf_field()}}
                 <input name="_method" type="hidden" value="PATCH">
@@ -113,4 +113,4 @@ $("#myForm").validate({
 	}
 });
 </script>
-@include('subscripton::layouts.footer')
+@include('subscription::layouts.footer')

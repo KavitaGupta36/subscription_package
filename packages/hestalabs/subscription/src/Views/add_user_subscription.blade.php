@@ -1,7 +1,7 @@
-@include('subscripton::layouts.header')
+@include('subscription::layouts.header')
 <div class="container-fluid">
   <div class="row content">
-	@include('subscripton::layouts.sidebar')
+	@include('subscription::layouts.sidebar')
     <div class="container">
 	    <div class="col-sm-9">
 	    	<h2>Add Subscripton</h2>
@@ -11,7 +11,7 @@
 	    	<div class="col-sm-3">
 	    		<a href="{{ url('user_subscription') }}" class="btn btn-primary">List</a>
 	    	</div>
-	    	@include('subscripton::layouts.alert')
+	    	@include('subscription::layouts.alert')
 	    	<form action="{{ route('user_subscription.store') }}" method="post" id="myForm">
 				<div class="form-group">
 					<label>User</label>
@@ -37,7 +37,7 @@
 	</div>
   </div>
 </div>
-@include('subscripton::layouts.footer')
+@include('subscription::layouts.footer')
 <script>
 $("#myForm").validate({ 
 	rules: {

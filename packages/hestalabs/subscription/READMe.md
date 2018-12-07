@@ -30,6 +30,19 @@ Next, run `composer update`.
 
 ## Usage
 
+a). Add in `providers` array,
+
+'providers' => array(
+    // ...
+
+    Hestalabs\Subscription\SubscriptionServiceProvider::class,
+);
+
+b). Finally publish the package configurations by running the following command in `Terminal`
+
+`php artisan vendor:publish --provider="Hestalabs\Subscription\SubscriptionServiceProvider"`
+
+c) Access in browser `/subscription`
 
 ## Security
 
@@ -42,17 +55,5 @@ If you discover any security related issues, please email friends@gmail.com inst
 ## License
 
 license. Please see the [license file](license.md) for more information.
-
-[ico-version]: https://img.shields.io/packagist/v/hestalabs/subscription.svg?style=flat-square
-[ico-downloads]: https://img.shields.io/packagist/dt/hestalabs/subscription.svg?style=flat-square
-[ico-travis]: https://img.shields.io/travis/hestalabs/subscription/master.svg?style=flat-square
-[ico-styleci]: https://styleci.io/repos/12345678/shield
-
-[link-packagist]: https://packagist.org/packages/hestalabs/subscription
-[link-downloads]: https://packagist.org/packages/hestalabs/subscription
-[link-travis]: https://travis-ci.org/hestalabs/subscription
-[link-styleci]: https://styleci.io/repos/12345678
-[link-author]: https://github.com/hestalabs
-[link-contributors]: ../../contributors]
        
 

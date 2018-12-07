@@ -1,12 +1,12 @@
-@include('subscripton::layouts.header')
+@include('subscription::layouts.header')
 <div class="container-fluid">
   <div class="row content">
-  @include('subscripton::layouts.sidebar')
+  @include('subscription::layouts.sidebar')
     <div class="container">
       <div class="col-sm-9">
         <h2>User Subscripton List</h2>
         <hr class="hr-primary">  
-        @include('subscripton::layouts.alert')
+        @include('subscription::layouts.alert')
         <div class="col-sm-9">
           <form method="get" action="{{ url('user_subscriptionSearch') }}">
             {{ csrf_field() }}
@@ -71,4 +71,4 @@
   </div>
   </div>
 </div>
-@include('subscripton::layouts.footer')
+@include('subscription::layouts.footer')

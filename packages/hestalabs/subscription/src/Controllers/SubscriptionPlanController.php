@@ -31,7 +31,7 @@ class SubscriptionPlanController extends Controller
     {
         try {
             $subscription = $this->subscription_plan->paginate(2);
-            return view('subscripton::subscription', compact('subscription'));
+            return view('subscription::subscription', compact('subscription'));
         } catch (Exception $e) {
             dd($e);
         }
@@ -45,7 +45,7 @@ class SubscriptionPlanController extends Controller
      */
     public function create()
     {
-        return view('subscripton::add_subscription');
+        return view('subscription::add_subscription');
     }
 
     /**
@@ -80,7 +80,7 @@ class SubscriptionPlanController extends Controller
     {
         try {
             $details = $this->subscription_plan->find($id);
-            return view('subscripton::edit_subscription', compact('details'));
+            return view('subscription::edit_subscription', compact('details'));
         } catch (Exception $e) {
             
         }
@@ -170,7 +170,7 @@ class SubscriptionPlanController extends Controller
             $search = $request->search;
             if(!empty($search)){
                 $subscription=$this->subscription_plan->whereRaw("title like '%$search%'")->paginate(2);
-                return view('subscripton::subscription', compact('subscription'));
+                return view('subscription::subscription', compact('subscription'));
                 $subscription->appends(['search' => $search]);
             }else{
                 Session::flash('flash_message', 'Search field will be not blank.');

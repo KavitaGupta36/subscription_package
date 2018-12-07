@@ -1,7 +1,7 @@
-@include('subscripton::layouts.header')
+@include('subscription::layouts.header')
 <div class="container-fluid">
   <div class="row content">
-	@include('subscripton::layouts.sidebar')
+	@include('subscription::layouts.sidebar')
     <div class="container">
 	    <div class="col-sm-9">
 	    	<h2>Add Subscripton</h2>
@@ -34,7 +34,7 @@
 	</div>
   </div>
 </div>
-@include('subscripton::layouts.footer')
+@include('subscription::layouts.footer')
 <script>
 $("#myForm").validate({ 
 	rules: {

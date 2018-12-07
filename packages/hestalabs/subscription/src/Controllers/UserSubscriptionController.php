@@ -39,7 +39,7 @@ class UserSubscriptionController extends Controller
     public function index()
     {
         $user_subscription = $this->user_subscription->paginate(2);
-        return view('subscripton::user_subscription', compact('user_subscription'));
+        return view('subscription::user_subscription', compact('user_subscription'));
     }
 
     /**
@@ -52,7 +52,7 @@ class UserSubscriptionController extends Controller
         try {
             $user = $this->user->all();
             $subscription = $this->subscription_plan->all();
-            return view('subscripton::add_user_subscription', compact('user', 'subscription'));
+            return view('subscription::add_user_subscription', compact('user', 'subscription'));
         } catch (Exception $e) {
             dd($e);
         }
@@ -89,7 +89,7 @@ class UserSubscriptionController extends Controller
             $user_subscription = $this->user_subscription->find($id);
             $user = $this->user->find($user_subscription->user_id);
             $subscription = $this->subscription_plan->all();
-            return view('subscripton::edit_user_subscription', compact('user', 'subscription', 'user_subscription'));
+            return view('subscription::edit_user_subscription', compact('user', 'subscription', 'user_subscription'));
         } catch (Exception $e) {
             dd($e);
         }
@@ -149,7 +149,7 @@ class UserSubscriptionController extends Controller
                                           $query->whereRaw("title like '%$search%'");
                                       })->paginate(1);
 
-                return view('subscripton::user_subscription', compact('user_subscription'));
+                return view('subscription::user_subscription', compact('user_subscription'));
                 $speakers->appends(['search' => $search]);
             }else{
                 return redirect('/user_subscription');

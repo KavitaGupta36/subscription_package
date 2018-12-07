@@ -15,7 +15,7 @@ class SubscriptionServiceProvider extends ServiceProvider
     {
         include __DIR__.'/routes.php';
 
-        $this->loadViewsFrom(__DIR__.'/Views', 'subscripton');
+        
         
         // Publish the config file
         $this->publishes([
@@ -23,13 +23,18 @@ class SubscriptionServiceProvider extends ServiceProvider
         ], 'config');
 
         // Publish the migrations
+        
         $this->publishes([
             __DIR__.'/../database/migrations/' => database_path('/migrations')
         ], 'migrations');
+        
+        $this->loadViewsFrom(__DIR__.'/Views', 'subscription');
+
         // Publish the view file 
         $this->publishes([
-            __DIR__.'/Views/' => base_path('resources/views'),
+            __DIR__.'/Views/' => resource_path('views/subscription'),
         ]);
+
         
     }
 
