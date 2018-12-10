@@ -15,8 +15,6 @@ class SubscriptionServiceProvider extends ServiceProvider
     {
         include __DIR__.'/routes.php';
 
-        
-        
         // Publish the config file
         $this->publishes([
             __DIR__.'/../config/subscription.php' => config_path('subscription.php'),
@@ -28,11 +26,16 @@ class SubscriptionServiceProvider extends ServiceProvider
             __DIR__.'/../database/migrations/' => database_path('/migrations')
         ], 'migrations');
         
-        $this->loadViewsFrom(__DIR__.'/Views', 'subscription');
+        $this->loadViewsFrom(__DIR__.'/views', 'subscription');
 
         // Publish the view file 
         $this->publishes([
-            __DIR__.'/Views/' => resource_path('views/subscription'),
+            __DIR__.'/views/' => resource_path('views/vendor/subscription'),
+        ]);
+
+        // Publish default image 
+        $this->publishes([
+            __DIR__.'/images' => public_path('images'),
         ]);
 
         

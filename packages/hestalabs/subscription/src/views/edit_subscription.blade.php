@@ -4,69 +4,77 @@
 	@include('subscription::layouts.sidebar')
     <div class="container">
 	    <div class="col-sm-9">
-	    	<h2>Add Subscripton</h2>
+	    	<h2>Edit Subscripton</h2>
 	    	<hr class="hr-primary">
 	    	
 	    	<div class="col-sm-9"></div>
 	    	<div class="col-sm-3">
 	    		<a href="{{ url('subscription') }}" class="btn btn-primary">List</a>
 	    	</div>
-	    	<div class="box box-warning">
-	    	<form action="{{ route('subscription.store') }}" method="post" enctype="multipart/form-data" name="myForm" id="myForm">
+	    	@include('subscription::layouts.alert')
+	    	<form action="{{ route('subscription.update', $details->id) }}" method="post" enctype="multipart/form-data" id="myForm" name="myForm">
+	    		{{csrf_field()}}
+                <input name="_method" type="hidden" value="PATCH">
+                
 				<div class="form-group">
 					<label>Title</label>
-					<input type="text" class="form-control" name="title" placeholder="Enter Title..">
+					<input type="text" class="form-control" name="title" value="{{$details->title}}" placeholder="Enter Title..">
 				</div>
 				<div class="form-group">
 					<label>Description</label>
-					<textarea class="form-control" name="description" rows="3"></textarea>
+					<textarea class="form-control" name="description" rows="3">{{$details->description}}</textarea>
 				</div>
 				<div class="form-group">
 				    <label>Image</label>
 				    <input type="file" class="form-control-file" name="thumbnail" id="imgInp">
-
-				    <img src="default.jpg" width="100" height="100" id="blah">
+				    @empty($details->thumbnail)
+                    	<img src="{{ asset('/images/default.jpg') }}" width="100" height="100" id="blah">
+                    @else
+                    	<img src="{{ url('uploads/subscription/'.$details->thumbnail) }}" width="100" height="100" id="blah">
+                    @endif
 				</div>
 				<div class="form-group">
 					<label>Price</label>
-					<input type="number" class="form-control" name="price" placeholder="Enter Price..">
+					<input type="number" class="form-control" name="price" value="{{$details->price}}" placeholder="Enter Price..">
 				</div>
 
 				<div class="form-row">
 				    <div class="form-group col-md-8">
 				      <label>Validity</label>
-				      <input type="number" class="form-control" name="valid_time" placeholder="Enter Validity duration..">
+				      <input type="number" class="form-control" name="valid_time" placeholder="Enter Validity duration.." value="{{$details->valid_time}}">
 				    </div>
 				    <div class="form-group col-md-4">
-				      <label for="inputState">Validity (Day/Month/Year)</label>
+				      <label for="inputState">Validity (Month/Year)</label>
 				      	<select name="validity_text" id="validity_text" class="bs-select form-control required" aria-required="true">
 							<option value="" selected="selected">Please select</option>
-							<option value="day">Day</option>
-							<option value="month">Month</option>
-							<option value="year">Year</option>
+							<option value="year" {{ $details->validity_text == 'day' ? 'selected="selected"' : '' }} >Day</option>
+							<option value="year" {{ $details->validity_text == 'year' ? 'selected="selected"' : '' }} >Year</option>
+							<option value="month" {{ $details->validity_text == 'month' ? 'selected="selected"' : '' }} >Month</option>
 						</select>
 				    </div>
 				</div>
 				<button>Submit</button>
 	    	</form>
-	    	</div>
 	    </div>
 	</div>
   </div>
 </div>
-@include('subscription::layouts.footer')
-<script>
+<script type="text/javascript">
 $( document ).ready(function() {
 	function readURL(input) {
 	    if (input.files && input.files[0]) {
 	        var reader = new FileReader();
+
 	        reader.onload = function (e) {
 	            $('#blah').show();
+	            //$('#imageUpdate').val(input.files[0].name);
 	            $('#blah').attr('src', e.target.result);
 	        }
+
 	        reader.readAsDataURL(input.files[0]);
 	    }
 	}
+
 	$("#imgInp").change(function(){
 	    readURL(this);
 	});         
@@ -109,3 +117,4 @@ $("#myForm").validate({
 	}
 });
 </script>
+@include('subscription::layouts.footer')

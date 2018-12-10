@@ -27,8 +27,12 @@
 				<div class="form-group">
 				    <label>Image</label>
 				    <input type="file" class="form-control-file" name="thumbnail" id="imgInp">
-
-                    <img src="{{ url('uploads/subscription/'.$details->thumbnail) }}" width="100" height="100" id="blah">
+				    
+                    @empty($details->thumbnail)
+                    	<img src="{{ asset('/images/default.jpg') }}" width="100" height="100" id="blah">
+                    @else
+                    	<img src="{{ url('uploads/subscription/'.$details->thumbnail) }}" width="100" height="100" id="blah">
+                    @endif
 				</div>
 				<div class="form-group">
 					<label>Price</label>
@@ -44,6 +48,7 @@
 				      <label for="inputState">Validity (Month/Year)</label>
 				      	<select name="validity_text" id="validity_text" class="bs-select form-control required" aria-required="true">
 							<option value="" selected="selected">Please select</option>
+							<option value="year" {{ $details->validity_text == 'day' ? 'selected="selected"' : '' }} >Day</option>
 							<option value="year" {{ $details->validity_text == 'year' ? 'selected="selected"' : '' }} >Year</option>
 							<option value="month" {{ $details->validity_text == 'month' ? 'selected="selected"' : '' }} >Month</option>
 						</select>
