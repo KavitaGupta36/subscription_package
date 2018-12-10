@@ -42,7 +42,9 @@ b). Finally publish the package configurations by running the following command 
 
 `php artisan vendor:publish --provider="Hestalabs\Subscription\SubscriptionServiceProvider"`
 
-c) Access in browser `/subscription`
+c) migrate database using `php artisan migrate`
+
+d) Access in browser `/subscription` or `/user_subscription`
 
 ## Security
 

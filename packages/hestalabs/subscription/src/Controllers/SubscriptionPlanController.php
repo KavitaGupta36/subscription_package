@@ -61,10 +61,7 @@ class SubscriptionPlanController extends Controller
             $input = request()->all();
             $input['thumbnail'] = $request->image;
             $this->subscription_plan->create($input);
-            //Session::flash('flash_message', 'Subscription successfully added!');
-            //$flash_message = "Subscription successfully added!";
             return redirect('/subscription');
-            //return redirect('/subscription')->with('flash_message');
         } catch (Exception $e) {
             dd($e);
         }

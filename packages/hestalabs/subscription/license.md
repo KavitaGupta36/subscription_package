@@ -1,5 +1,5 @@
 # The license
 
-Copyright (c) Shahrukh anwar <friends@gmail.com>
+Copyright (c) Hestalabs <friends@gmail.com>
 
 ...Add your license text here...
